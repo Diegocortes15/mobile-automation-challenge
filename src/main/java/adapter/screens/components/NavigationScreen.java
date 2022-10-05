@@ -15,19 +15,19 @@ public class NavigationScreen extends BaseMobileScreen {
         super();
     }
 
-    public void goToHomeOption(){
+    public void goToHomeOption() {
         findMobileElement(homeIcon).click();
     }
 
-    public void goToSearchOption(){
+    public void goToSearchOption() {
         findMobileElement(searchIcon).click();
     }
 
-    public void goToVideoOption(){
+    public void goToVideoOption() {
         findMobileElement(videoIcon).click();
     }
 
-    public void goToProfileOption(){
+    public void goToProfileOption() {
         findMobileElement(profileIcon).click();
     }
 

@@ -3,6 +3,7 @@ package adapter.bases;
 
 import adapter.screens.LoginScreen;
 import adapter.screens.MovieScreen;
+import adapter.screens.ProfileScreen;
 import adapter.screens.SearchScreen;
 import adapter.screens.components.NavigationScreen;
 import core.ConfigCapabilities;
@@ -19,6 +20,7 @@ public class BaseMobileTest {
     public LoginScreen loginScreen;
     public SearchScreen searchScreen;
     public MovieScreen movieScreen;
+    public ProfileScreen profileScreen;
 
 
     @BeforeSuite(alwaysRun = true)
@@ -28,7 +30,7 @@ public class BaseMobileTest {
         loginScreen = new LoginScreen();
         searchScreen = new SearchScreen();
         movieScreen = new MovieScreen();
-
+        profileScreen = new ProfileScreen();
     }
 
     @AfterSuite(alwaysRun = true)

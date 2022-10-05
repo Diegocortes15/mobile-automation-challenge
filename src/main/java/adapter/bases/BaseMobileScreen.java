@@ -10,17 +10,20 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 public class BaseMobileScreen {
     private final AndroidDriver<AndroidElement> driver;
     private final WebDriverWait wait;
     private AndroidElement androidElement;
-    private String mobileElementDescription;
+    private List<AndroidElement> androidElements;
+    //private String mobileElementDescription;
 
     public BaseMobileScreen() {
         driver = MobileAppDriver.getMoviesAppDriver(ConfigCapabilities.getCapabilities());
@@ -36,7 +39,7 @@ public class BaseMobileScreen {
     public AndroidElement okButton;
 
     public BaseMobileScreen findMobileElement(MobileElement mobileElement) {
-        mobileElementDescription = mobileElement.elementDescription;
+        //mobileElementDescription = mobileElement.elementDescription;
         switch (mobileElement.by) {
             case AndroidUiSelector:
                 androidElement = (AndroidElement) wait.until(ExpectedConditions.visibilityOf(driver.findElementByAndroidUIAutomator(mobileElement.element)));
@@ -49,6 +52,16 @@ public class BaseMobileScreen {
                 break;
             case Xpath:
                 androidElement = (AndroidElement) wait.until(ExpectedConditions.elementToBeClickable(By.xpath(mobileElement.element)));
+                break;
+        }
+        return this;
+    }
+
+    public BaseMobileScreen findMobileElements(MobileElement mobileElement) {
+        //mobileElementDescription = mobileElement.elementDescription;
+        switch (mobileElement.by) {
+            case AndroidUiSelector:
+                androidElements = driver.findElementsByAndroidUIAutomator(mobileElement.element);
                 break;
         }
         return this;
@@ -75,9 +88,8 @@ public class BaseMobileScreen {
         }
     }
 
-    public BaseMobileScreen click() {
+    public void click() {
         androidElement.click();
-        return this;
     }
 
     public BaseMobileScreen clear() {
@@ -90,8 +102,21 @@ public class BaseMobileScreen {
         return this;
     }
 
+    public BaseMobileScreen getRandomElement() {
+        int listSize = androidElements.size();
+        int index = (int) (Math.random() * (listSize) + 1);
+        androidElement = androidElements.get(index);
+        return this;
+    }
+
     public String getText() {
         return androidElement.getText();
+    }
+
+    public BaseMobileScreen scrollTo(String text) {
+        driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(" + text + ")");
+        //driver.findElementByAndroidUIAutomator(text);
+        return this;
     }
 }
 
