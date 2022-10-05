@@ -4,6 +4,7 @@ import adapter.bases.BaseMobileScreen;
 import adapter.screens.components.NavigationScreen;
 import core.By;
 import core.MobileElement;
+import io.qameta.allure.Step;
 
 public class LoginScreen extends BaseMobileScreen {
     private final MobileElement notNowButton = new MobileElement(By.Id, "com.imdb.mobile:id/splash_not_now", "Not now button");
@@ -16,10 +17,12 @@ public class LoginScreen extends BaseMobileScreen {
         super();
     }
 
+    @Step("Skip SignIn")
     public void skipSignIn() {
         findMobileElement(notNowButton).click();
     }
 
+    @Step("SingIn with Google")
     public void singInWithGoogle() {
         findMobileElement(logInWithGoogleButton).click();
         findMobileElement(firstGoogleAccount).click();

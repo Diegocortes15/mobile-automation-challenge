@@ -101,7 +101,7 @@ public class BaseMobileScreen {
 
     public BaseMobileScreen getRandomElement() {
         int listSize = androidElements.size();
-        int index = (int) (Math.random() * (listSize) + 1);
+        int index = (int) (Math.random() * (listSize) + 1) - 1;
         androidElement = androidElements.get(index);
         return this;
     }
@@ -115,7 +115,7 @@ public class BaseMobileScreen {
         return this;
     }
 
-    public boolean isDisplayed(){
+    public boolean isDisplayed() {
         return androidElement.isDisplayed();
     }
 }

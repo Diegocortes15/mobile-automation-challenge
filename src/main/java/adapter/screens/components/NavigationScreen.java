@@ -3,6 +3,7 @@ package adapter.screens.components;
 import adapter.bases.BaseMobileScreen;
 import core.By;
 import core.MobileElement;
+import io.qameta.allure.Step;
 
 public class NavigationScreen extends BaseMobileScreen {
 
@@ -19,6 +20,7 @@ public class NavigationScreen extends BaseMobileScreen {
         findMobileElement(homeIcon).click();
     }
 
+    @Step("Go to search option")
     public void goToSearchOption() {
         findMobileElement(searchIcon).click();
     }
@@ -27,6 +29,7 @@ public class NavigationScreen extends BaseMobileScreen {
         findMobileElement(videoIcon).click();
     }
 
+    @Step("Go to profile option")
     public void goToProfileOption() {
         findMobileElement(profileIcon).click();
     }

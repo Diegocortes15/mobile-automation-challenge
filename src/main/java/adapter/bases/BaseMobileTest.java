@@ -11,7 +11,7 @@ import org.testng.annotations.*;
 
 
 public class BaseMobileTest {
-    private AndroidDriver<AndroidElement> driver;
+    public AndroidDriver<AndroidElement> driver;
     public NavigationScreen navigationScreen;
     public LoginScreen loginScreen;
     public SearchScreen searchScreen;
@@ -19,21 +19,25 @@ public class BaseMobileTest {
     public ProfileScreen profileScreen;
     public RateMovieScreen rateMovieScreen;
 
-    @BeforeSuite(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     public void SetUp() {
-        driver = MobileAppDriver.getMoviesAppDriver(ConfigCapabilities.getCapabilities());
-        navigationScreen = new NavigationScreen();
-        loginScreen = new LoginScreen();
-        searchScreen = new SearchScreen();
-        movieScreen = new MovieScreen();
-        profileScreen = new ProfileScreen();
-        rateMovieScreen = new RateMovieScreen();
+        if (driver == null) {
+            this.driver = MobileAppDriver.getMoviesAppDriver(ConfigCapabilities.getCapabilities());
+            this.navigationScreen = new NavigationScreen();
+            this.loginScreen = new LoginScreen();
+            this.searchScreen = new SearchScreen();
+            this.movieScreen = new MovieScreen();
+            this.profileScreen = new ProfileScreen();
+            this.rateMovieScreen = new RateMovieScreen();
+        }
     }
 
-    @AfterSuite(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void TearDown() {
         if (driver != null) {
             driver.quit();
+            driver = null;
+            // driver.close();
         }
     }
 }

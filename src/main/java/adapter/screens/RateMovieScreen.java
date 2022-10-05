@@ -3,6 +3,7 @@ package adapter.screens;
 import adapter.bases.BaseMobileScreen;
 import core.By;
 import core.MobileElement;
+import io.qameta.allure.Step;
 
 public class RateMovieScreen extends BaseMobileScreen {
 
@@ -14,12 +15,14 @@ public class RateMovieScreen extends BaseMobileScreen {
         super();
     }
 
-    public void setRatingMovie(int rating) {
+    @Step("Add movie rating")
+    public void setMovieRating(int rating) {
         this.ratingMovie = new MobileElement(By.AndroidUiSelector, "new UiSelector().resourceId(\"com.imdb.mobile:id/star_row\").childSelector(new UiSelector().resourceId(\"com.imdb.mobile:id/star_" + rating + "\"))", "Rating movie");
         findMobileElement(ratingMovie).click();
         findMobileElement(rateButton).click();
     }
 
+    @Step("Click remove movie rating")
     public void clickRemoveMovieRating(){
         findMobileElement(removeRatingButton).click();
     }

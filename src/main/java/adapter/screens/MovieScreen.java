@@ -3,6 +3,7 @@ package adapter.screens;
 import adapter.bases.BaseMobileScreen;
 import core.By;
 import core.MobileElement;
+import io.qameta.allure.Step;
 
 public class MovieScreen extends BaseMobileScreen {
     private final MobileElement movieDescription = new MobileElement(By.Id, "com.imdb.mobile:id/plot_overview", "Movie description");
@@ -16,35 +17,43 @@ public class MovieScreen extends BaseMobileScreen {
         super();
     }
 
+    @Step("Get movie description")
     public String getMovieDescription() {
         return findMobileElement(movieDescription).getText();
     }
 
+    @Step("Get movie title")
     public String getMovieTitle() {
         return findMobileElement(movieTitle).getText();
     }
 
+    @Step("Add movie to watchlist")
     public void addToWatchList() {
         findMobileElement(addToWatchListButton).click();
     }
 
+    @Step("Scroll to user reviews section")
     public void scrollToUserReviews() {
         scrollTo(userReviewsSection);
     }
 
+    @Step("Click on empty rate button")
     public void clickReviewsSectionEmptyRateButton() {
         findMobileElement(reviewsSectionEmptyRateButton).click();
     }
 
+    @Step("Verify if rate button is displayed")
     public boolean isReviewsSectionRateButtonDisplayed()
     {
         return findMobileElement(reviewsSectionRateButton).isDisplayed();
     }
 
+    @Step("Click on rate button")
     public void clickReviewsSectionRateButton() {
         findMobileElement(reviewsSectionRateButton).click();
     }
 
+    @Step("Verify if empty rate button is displayed")
     public boolean isReviewsSectionEmptyRateButtonDisplayed()
     {
         return findMobileElement(reviewsSectionEmptyRateButton).isDisplayed();
