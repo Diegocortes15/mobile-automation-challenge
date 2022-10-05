@@ -10,7 +10,6 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -59,10 +58,8 @@ public class BaseMobileScreen {
 
     public BaseMobileScreen findMobileElements(MobileElement mobileElement) {
         //mobileElementDescription = mobileElement.elementDescription;
-        switch (mobileElement.by) {
-            case AndroidUiSelector:
-                androidElements = driver.findElementsByAndroidUIAutomator(mobileElement.element);
-                break;
+        if (mobileElement.by == core.By.AndroidUiSelector) {
+            androidElements = driver.findElementsByAndroidUIAutomator(mobileElement.element);
         }
         return this;
     }
@@ -113,10 +110,13 @@ public class BaseMobileScreen {
         return androidElement.getText();
     }
 
-    public BaseMobileScreen scrollTo(String text) {
-        driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(" + text + ")");
-        //driver.findElementByAndroidUIAutomator(text);
+    public BaseMobileScreen scrollTo(MobileElement mobileElement) {
+        driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"" + mobileElement.elementDescription + "\").instance(0))");
         return this;
+    }
+
+    public boolean isDisplayed(){
+        return androidElement.isDisplayed();
     }
 }
 
