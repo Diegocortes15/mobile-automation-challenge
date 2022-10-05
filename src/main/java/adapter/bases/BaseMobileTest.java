@@ -1,10 +1,7 @@
 package adapter.bases;
 
 
-import adapter.screens.LoginScreen;
-import adapter.screens.MovieScreen;
-import adapter.screens.ProfileScreen;
-import adapter.screens.SearchScreen;
+import adapter.screens.*;
 import adapter.screens.components.NavigationScreen;
 import core.ConfigCapabilities;
 import core.MobileAppDriver;
@@ -14,14 +11,13 @@ import org.testng.annotations.*;
 
 
 public class BaseMobileTest {
-
     private AndroidDriver<AndroidElement> driver;
     public NavigationScreen navigationScreen;
     public LoginScreen loginScreen;
     public SearchScreen searchScreen;
     public MovieScreen movieScreen;
     public ProfileScreen profileScreen;
-
+    public RateMovieScreen rateMovieScreen;
 
     @BeforeSuite(alwaysRun = true)
     public void SetUp() {
@@ -31,6 +27,7 @@ public class BaseMobileTest {
         searchScreen = new SearchScreen();
         movieScreen = new MovieScreen();
         profileScreen = new ProfileScreen();
+        rateMovieScreen = new RateMovieScreen();
     }
 
     @AfterSuite(alwaysRun = true)

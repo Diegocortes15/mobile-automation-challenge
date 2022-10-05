@@ -1,6 +1,7 @@
 package adapter.screens;
 
 import adapter.bases.BaseMobileScreen;
+import adapter.screens.components.NavigationScreen;
 import core.By;
 import core.MobileElement;
 
@@ -11,7 +12,7 @@ public class LoginScreen extends BaseMobileScreen {
     private final MobileElement submitGoogleAccountSelectedButton = new MobileElement(By.Id, "android:id/button1", "Submit Google account selected button");
 
 
-    public LoginScreen()  {
+    public LoginScreen() {
         super();
     }
 
@@ -19,10 +20,9 @@ public class LoginScreen extends BaseMobileScreen {
         findMobileElement(notNowButton).click();
     }
 
-    public void singInWithGoogle(){
+    public void singInWithGoogle() {
         findMobileElement(logInWithGoogleButton).click();
         findMobileElement(firstGoogleAccount).click();
         findMobileElement(submitGoogleAccountSelectedButton).click();
-
     }
 }
