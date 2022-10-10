@@ -18,14 +18,16 @@ public class LoginScreen extends BaseMobileScreen {
     }
 
     @Step("Skip SignIn")
-    public void skipSignIn() {
+    public HomeScreen skipSignIn() {
         findMobileElement(notNowButton).click();
+        return new HomeScreen();
     }
 
     @Step("SingIn with Google")
-    public void singInWithGoogle() {
+    public HomeScreen singInWithGoogle() {
         findMobileElement(logInWithGoogleButton).click();
         findMobileElement(firstGoogleAccount).click();
         findMobileElement(submitGoogleAccountSelectedButton).click();
+        return new HomeScreen();
     }
 }

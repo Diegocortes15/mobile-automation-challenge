@@ -16,16 +16,18 @@ public class SearchScreen extends BaseMobileScreen {
     }
 
     @Step("Search movie")
-    public void searchMovie(String movie) {
+    public MovieScreen searchMovie(String movie) {
         findMobileElement(searchBar).click();
         findMobileElement(searchBar).sendKeys(movie);
         findMobileElement(listMovies).click();
+        return new MovieScreen();
     }
 
     @Step("Search random movie")
-    public void searchRandomMovie(String movie) {
+    public MovieScreen searchRandomMovie(String movie) {
         findMobileElement(searchBar).click();
         findMobileElement(searchBar).sendKeys(movie);
         findMobileElements(listMovies).getRandomElement().click();
+        return new MovieScreen();
     }
 }

@@ -13,6 +13,7 @@ import org.testng.annotations.*;
 public class BaseMobileTest {
     public AndroidDriver<AndroidElement> driver;
     public NavigationScreen navigationScreen;
+    public HomeScreen homeScreen;
     public LoginScreen loginScreen;
     public SearchScreen searchScreen;
     public MovieScreen movieScreen;
@@ -23,6 +24,7 @@ public class BaseMobileTest {
     public void SetUp() {
         if (driver == null) {
             this.driver = MobileAppDriver.getMoviesAppDriver(ConfigCapabilities.getCapabilities());
+            this.homeScreen = new HomeScreen();
             this.navigationScreen = new NavigationScreen();
             this.loginScreen = new LoginScreen();
             this.searchScreen = new SearchScreen();

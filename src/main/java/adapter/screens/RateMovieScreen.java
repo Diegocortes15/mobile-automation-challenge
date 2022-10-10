@@ -16,14 +16,16 @@ public class RateMovieScreen extends BaseMobileScreen {
     }
 
     @Step("Add movie rating")
-    public void setMovieRating(int rating) {
+    public MovieScreen setMovieRating(int rating) {
         this.ratingMovie = new MobileElement(By.AndroidUiSelector, "new UiSelector().resourceId(\"com.imdb.mobile:id/star_row\").childSelector(new UiSelector().resourceId(\"com.imdb.mobile:id/star_" + rating + "\"))", "Rating movie");
         findMobileElement(ratingMovie).click();
         findMobileElement(rateButton).click();
+        return new MovieScreen();
     }
 
     @Step("Click remove movie rating")
-    public void clickRemoveMovieRating(){
+    public MovieScreen clickRemoveMovieRating(){
         findMobileElement(removeRatingButton).click();
+        return new MovieScreen();
     }
 }
